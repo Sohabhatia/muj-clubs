@@ -1,0 +1,198 @@
+doctype html
+head
+  meta(charset='utf-8')
+  title #{Title}
+  // css style sheet
+  link(rel='stylesheet' href='https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css' integrity='sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk' crossorigin='anonymous')
+  link(rel='stylesheet' href='/css/mainClub.css')
+  link(rel='stylesheet' href='/css/mainClub.css')
+  // font awesome link
+  script(src='https://kit.fontawesome.com/e58d4fb0ce.js' crossorigin='anonymous')
+  // various links for bootstrap
+  meta(name='viewport' content='width=device-width, initial-scale=1, shrink-to-fit=no')
+  script(src='https://code.jquery.com/jquery-3.5.1.slim.min.js' integrity='sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj' crossorigin='anonymous')
+  script(src='https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js' integrity='sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo' crossorigin='anonymous')
+  script(src='https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js' integrity='sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI' crossorigin='anonymous')
+  script(src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js')
+  // google fonts link
+  link(href='https://fonts.googleapis.com/css2?family=Montserrat:wght@400;900&family=Ubuntu&display=swap' rel='stylesheet')
+  // UIkit CSS
+  link(rel='stylesheet' href='https://cdn.jsdelivr.net/npm/uikit@3.5.7/dist/css/uikit.min.css')
+  // UIkit JS
+  script(src='https://cdn.jsdelivr.net/npm/uikit@3.5.7/dist/js/uikit.min.js')
+  script(src='https://cdn.jsdelivr.net/npm/uikit@3.5.7/dist/js/uikit-icons.min.js')
+  //-script(src='mainClub.js')
+// title and navbar
+section#title-section.title-section
+  
+  nav#nav.navbar.navbar-expand-lg.navbar-dark
+    a.navbar-brand
+      img.navbar-logo(src='/images/muj10.png' alt='')
+    if user  
+      li.nav-item.dropdown
+            a#navbarDropdown.navbar-brand.name-btn.nav-link.dropdown-toggle.btn-account(href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false")
+              | Hello, #{user.name}!
+            .dropdown-menu(aria-labelledby="navbarDropdown")
+              a.dropdown-item(href="/myClubs") My Clubs 
+    #navbarNavDropdown.collapse.navbar-collapse
+      ul.navbar-nav
+        // light/dark mode container
+        label.switch
+          input#m-color(type='checkbox')
+          span.slider.round
+        li.nav-item
+          a.nav-link.nav-txt
+            | Dark Mode 
+            span.sr-only (current)
+        // // light/dark mode container
+        li.nav-item
+          a.nav-link(href='/')
+            | Home 
+            span.sr-only (current)
+        li.nav-item
+          a.nav-link(href='/clubs') MUJ Clubs
+        li.nav-item.dropdown
+          a#navbarDropdown.nav-link.dropdown-toggle.btn-account.btn.btn-outline-secondary(href='#' role='button' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false')
+            | Accounts
+          .dropdown-menu(aria-labelledby='navbarDropdown')
+            if user
+              a.dropdown-item#logout-btn(href='#') Logout
+              a.dropdown-item(href='#footer') Contacts
+            else
+              a.dropdown-item(href='/login') Login
+              a.dropdown-item(href='signin.html') Sign up
+              .dropdown-divider
+              a.dropdown-item(href='#footer') Contacts
+        
+        li.nav-item
+          a.nav-link.btn-account.btn.btn-info(type='button' href='/register') Register
+  header.top
+
+  // clubname and register button
+  .container-fluid
+    //
+      <h1 class="design">Club Name</h1>
+      register button top
+      <div class="btn-area ">
+      <button class="btn btn-clubs register-top"> <a href="register.html" class="btn-link"> Register Now! </a></button>
+      </div>
+    .top
+      h1.big-heading= club.name
+      button.btn.btn-clubs.register-bottom
+        a.btn-link(href='/register')  Register Now! 
+    -if(user.role === 'admin' && user.club === `${club.name}`)
+      .admin-panel-btn-top
+        a.admin-btn.btn.btn-dark(type='button' href=`/admin/${club.name}`) Admin
+  // //clubname and register button
+// end of title section
+// Welcome and about us
+section
+  .container-fluid.testimonial-block-vertical.uk-animation-toggle(tabindex='0')
+    .testimonial-block-vertical-quote.uk-card.uk-card-default.uk-card-body.uk-animation-slide-left-small
+      p.uk-text-center
+        | #{club.description}
+    .testimonial-block-vertical-person
+      img.testimonial-block-vertical-avatar(src='https://placehold.it/60' alt='')
+      div
+        p.testimonial-block-vertical-name About Us
+        p.testimonial-block-vertical-info= club.name
+// Heading-A
+article
+  .loading
+    span Highlights
+// // Heading-A
+// Club Images
+.container-fluid
+  .grid-background
+    .grid
+      .item(style='background-image: url(https://images.unsplash.com/photo-1439209306665-700c9bca794c?dpr=1&auto=format&fit=crop&w=1500&h=1000&q=80&cs=tinysrgb&crop=)')
+      .item(style='background-image: url(https://images.unsplash.com/photo-1466853817435-05b43fe45b39?dpr=1&auto=compress,format&fit=crop&w=1199&h=871&q=80&cs=tinysrgb&crop=)')
+      .item(style='background-image: url(https://images.unsplash.com/photo-1488572384981-eac03dfeb6b9?dpr=1&auto=compress,format&fit=crop&w=1199&h=799&q=80&cs=tinysrgb&crop=)')
+      .item(style='background-image: url(https://images.unsplash.com/photo-1470091688026-38b51162c8df?dpr=1&auto=compress,format&fit=crop&w=1199&h=750&q=80&cs=tinysrgb&crop=)')
+      .item(style='background-image: url(https://images.unsplash.com/photo-1475139450941-3b6464b2dde3?dpr=1&auto=compress,format&fit=crop&w=1199&h=673&q=80&cs=tinysrgb&crop=)')
+// //Club Images
+// Members
+.loading
+  span Members
+article
+  .container
+    .card
+      h2 David Manfield
+      .title.title--epic Programmer
+      .desc
+        | David can develop any kind of software, he started learning to code for about 10 years!
+      img.members(src='/images/soha.jpg' alt='')
+      .actions
+        button.actions__like
+          i.icon-footer.fab.fa-twitter
+        button.actions__cancel
+          i.icon-footer.fab.fa-instagram
+        button.actions__trade
+          i.icon-footer.fab.fa-facebook-f
+    .card
+      h2 Morgan
+      .title.title--legendary Ant Collector
+      .desc Morgan has collected ants since they were six years old and now has many
+      img.members(src='/images/soha.jpg' alt='')
+      .actions
+        button.actions__like
+          i.icon-footer.fab.fa-twitter
+        button.actions__cancel
+          i.icon-footer.fab.fa-instagram
+        button.actions__trade
+          i.icon-footer.fab.fa-facebook-f
+    .card
+      h2 Isaac Armstrong
+      .title.title--common Walmart Cashier
+      .desc Isaac know very well every dollar and can identify fake ones from 10 miles away.
+      img.members(src='/images/soha.jpg' alt='')
+      .actions
+        button.actions__like
+          i.icon-footer.fab.fa-twitter
+        button.actions__cancel
+          i.icon-footer.fab.fa-instagram
+        button.actions__trade
+          i.icon-footer.fab.fa-facebook-f
+// // Members
+// register button down
+.btn-area
+  button.btn.btn-clubs.register-bottom
+    a.btn-link(href='/register')  Register Now! 
+-if(user.role === 'admin' && user.club === `${club.name}`)
+  .admin-panel-btn-bottom
+    a.admin-btn.btn.btn-dark(type='button' href=`/admin/${club.name}`) Admin
+// Footer
+footer#footer.colored-section
+  // copyright and contact info
+  .container-fluid
+    // up button
+    .arrow-up
+      a.arrow-btn-item.arrow(href='#title-section')
+        | up
+        i.arrow-btn-item.fas.fa-chevron-up
+    a.footer-link(href='https://twitter.com/Jaipur_Manipal')
+      i.icon-footer.fab.fa-twitter
+    a.footer-link(href='https://www.facebook.com/manipal.university')
+      i.icon-footer.fab.fa-facebook-f
+    a.footer-link(href='https://www.instagram.com/jaipurmanipal/?hl=en')
+      i.icon-footer.fab.fa-instagram
+    // <a href=""><i class="icon-footer fas fa-envelope"></i></a>
+    p.copyright-msg &copy;Copyright 2020 MUJ Clubs
+// up button
+script.
+      const colorSwitch = document.getElementById('m-color');
+      colorSwitch.addEventListener('click',checkMode);
+      function checkMode(){
+      if(colorSwitch.checked){
+      darkModeOn();
+      }
+      else{
+      darkModeOff();
+      }
+      }
+      function darkModeOn(){
+      document.body.classList.add("dark-mode");
+      }
+      function darkModeOff() {
+      document.body.classList.remove("dark-mode");
+      }
